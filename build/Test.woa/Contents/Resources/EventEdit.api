@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<wodefinitions>
+        <wo class="EventEdit.java" wocomponentcontent="false">
+
+        <binding name="event"/>
+        <validation message="'event' is a required binding.">
+            <unbound name="event"/>
+        </validation>
+    </wo>
+</wodefinitions>

@@ -1,0 +1,35 @@
+{
+    attributes = (
+        {
+            allowsNull = Y; 
+            columnName = address; 
+            name = address; 
+            prototypeName = varchar255; 
+        }, 
+        {
+            allowsNull = Y; 
+            columnName = contactPhoneNo; 
+            name = contactPhoneNo; 
+            prototypeName = varchar255; 
+        }, 
+        {allowsNull = N; name = id; prototypeName = id; }, 
+        {allowsNull = Y; columnName = name; name = name; prototypeName = varchar255; }
+    ); 
+    attributesUsedForLocking = (address, contactPhoneNo, id, name); 
+    className = "your.app.model.Location"; 
+    classProperties = (address, contactPhoneNo, events, name); 
+    externalName = Location; 
+    fetchSpecificationDictionary = {}; 
+    internalInfo = {"_javaClientClassName" = Location; }; 
+    name = Location; 
+    primaryKeyAttributes = (id); 
+    relationships = (
+        {
+            destination = Event; 
+            isToMany = Y; 
+            joinSemantic = EOInnerJoin; 
+            joins = ({destinationAttribute = locationID; sourceAttribute = id; }); 
+            name = events; 
+        }
+    ); 
+}

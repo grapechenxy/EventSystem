@@ -1,0 +1,30 @@
+{
+    EOModelVersion = "2.1"; 
+    adaptorName = JDBC; 
+    connectionDictionary = {
+        URL = "jdbc:FrontBase://127.0.0.1/persondb"; 
+        password = 123456; 
+        username = timeoff; 
+    }; 
+    entities = (
+        {className = "your.app.model.Event"; name = Event; }, 
+        {className = "your.app.model.Location"; name = Location; }, 
+        {className = "your.app.model.Person"; name = Person; }
+    ); 
+    userInfo = {
+        "_EntityModeler" = {
+            activeDatabaseConfigName = Default; 
+            databaseConfigs = {
+                Default = {
+                    adaptorName = JDBC; 
+                    connectionDictionary = {
+                        URL = "jdbc:FrontBase://127.0.0.1/persondb"; 
+                        password = 123456; 
+                        username = timeoff; 
+                    }; 
+                    prototypeEntityName = EOJDBCFrontBasePrototypes; 
+                }; 
+            }; 
+        }; 
+    }; 
+}

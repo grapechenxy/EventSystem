@@ -1,0 +1,26 @@
+
+<wo:form multipleSubmit = "true">
+<br/>
+<br/>
+
+<div class="edit"><wo:EventEdit event = "$selectedEvent" /></div>
+
+
+<wo:submit action = "$createEvent" value = "create"></wo:submit><br/>
+
+
+
+<wo:loop list = "$events" item = "$event"> 
+<div class = "big"><wo:string value = "$event.eventName" /></div>  
+<wo:string value = "$event.dateTime" formatter = "$nsdf" />  
+<wo:string value = "$event.location.name" />  
+<wo:link action = "$editEvent">edit</wo:link> <wo:link action = "$deleteEvent">delete</wo:link> 
+<br />
+Participants: <br/><wo:loop list = "$event.persons" item = "$person"><wo:string value = "$person.fullName" />;<br /> </wo:loop>
+<br/>
+
+</wo:loop>
+<wo:submit action = "$saveEvent" value = "save"></wo:submit>
+<br/>
+<br/>
+</wo:form>

@@ -1,0 +1,36 @@
+{
+    attributes = (
+        {allowsNull = Y; columnName = age; name = age; prototypeName = intNumber; }, 
+        {allowsNull = Y; columnName = eventID; name = eventID; prototypeName = id; }, 
+        {
+            allowsNull = Y; 
+            columnName = firstName; 
+            name = firstName; 
+            prototypeName = varchar255; 
+        }, 
+        {allowsNull = N; name = id; prototypeName = id; }, 
+        {
+            allowsNull = Y; 
+            columnName = lastName; 
+            name = lastName; 
+            prototypeName = varchar255; 
+        }
+    ); 
+    attributesUsedForLocking = (age, eventID, firstName, id, lastName); 
+    className = "your.app.model.Person"; 
+    classProperties = (age, event, firstName, lastName); 
+    externalName = Person; 
+    fetchSpecificationDictionary = {}; 
+    internalInfo = {"_javaClientClassName" = Person; }; 
+    name = Person; 
+    primaryKeyAttributes = (id); 
+    relationships = (
+        {
+            destination = Event; 
+            isToMany = N; 
+            joinSemantic = EOInnerJoin; 
+            joins = ({destinationAttribute = id; sourceAttribute = eventID; }); 
+            name = event; 
+        }
+    ); 
+}

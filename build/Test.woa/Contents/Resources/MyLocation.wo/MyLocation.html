@@ -1,0 +1,35 @@
+<wo:form multipleSubmit = "true">
+<div class="edit">
+<wo:LocationEditing location = "$selectedLocation"></wo:LocationEditing>
+</div>
+
+<wo:submit action = "$createLocation" value = "create"></wo:submit>
+<wo:submit action = "$saveLocation" value = "save"></wo:submit>
+
+<br />
+<br />
+<br />
+
+<wo:loop list = "$locations" item = "$location">
+<wo:string value = "$location.name" />:  
+<wo:string value = "$location.address" />; Telephone:  
+<wo:string value = "$location.contactPhoneNo"/> 
+<wo:link action = "$editLocation">edit</wo:link> <wo:link action = "$deleteLocation">delete</wo:link><br/>
+<div class = "big1"> events: <br/></div>
+<wo:loop list = "$location.events" item = "$event">
+
+<wo:string value = "$event.eventName" />: 
+
+<wo:loop list = "$event.persons" item = "$person">
+
+<wo:string value = "$person.fullName" />; 
+</wo:loop> 
+
+<br/></wo:loop>
+
+<br/><br/></wo:loop>
+
+</wo:form>
+
+
+

@@ -1,0 +1,24 @@
+
+
+<wo:form multipleSubmit = "true">
+
+<div class="person"><wo:PersonEdit person = "$selectedPerson"/></div>
+<br/>
+
+<wo:submit action = "$create" value = "create"></wo:submit><br/>
+<wo:submit action = "$save" value = "save"></wo:submit><br/>
+
+</wo:form>
+
+<wo:loop list = "$persons" item = "$person"> 
+<wo:string value = "$person.fullName" /> <wo:string value = "$person.age" /> <wo:string value = "$person.event.eventName" />
+<wo:link action = "$edit">edit</wo:link>  <wo:link action = "$delete">delete</wo:link>  
+<br />
+
+<br/>
+<br/>
+
+</wo:loop>
+
+
+

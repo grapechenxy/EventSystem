@@ -1,0 +1,3 @@
+Event name: <wo:textField value = "$event.eventName"></wo:textField>
+Event date: <wo:textField value = "$event.dateTime" formatter = "$nsdf"></wo:textField>
+Location: <wo:select list = "$locations" item = "$location" selection = "$event.location" displayString = "$location.name" noSelectionString = "none"><br/></wo:select>

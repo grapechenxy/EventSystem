@@ -1,0 +1,46 @@
+{
+    attributes = (
+        {
+            allowsNull = Y; 
+            columnName = DateTime; 
+            name = dateTime; 
+            prototypeName = dateTime; 
+        }, 
+        {
+            allowsNull = Y; 
+            columnName = eventName; 
+            name = eventName; 
+            prototypeName = varchar255; 
+        }, 
+        {allowsNull = N; name = id; prototypeName = id; }, 
+        {
+            allowsNull = Y; 
+            columnName = locationID; 
+            name = locationID; 
+            prototypeName = id; 
+        }
+    ); 
+    attributesUsedForLocking = (dateTime, eventName, id, locationID); 
+    className = "your.app.model.Event"; 
+    classProperties = (dateTime, eventName, location, persons); 
+    externalName = Event; 
+    fetchSpecificationDictionary = {}; 
+    name = Event; 
+    primaryKeyAttributes = (id); 
+    relationships = (
+        {
+            destination = Location; 
+            isToMany = N; 
+            joinSemantic = EOInnerJoin; 
+            joins = ({destinationAttribute = id; sourceAttribute = locationID; }); 
+            name = location; 
+        }, 
+        {
+            destination = Person; 
+            isToMany = Y; 
+            joinSemantic = EOInnerJoin; 
+            joins = ({destinationAttribute = eventID; sourceAttribute = id; }); 
+            name = persons; 
+        }
+    ); 
+}
