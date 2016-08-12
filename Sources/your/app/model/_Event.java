@@ -1,4 +1,4 @@
-// DO NOT EDIT.  Make changes to Event.java instead.
+// $LastChangedRevision: 4733 $ DO NOT EDIT.  Make changes to Event.java instead.
 package your.app.model;
 
 import com.webobjects.eoaccess.*;
@@ -6,34 +6,50 @@ import com.webobjects.eocontrol.*;
 import com.webobjects.foundation.*;
 import java.math.*;
 import java.util.*;
+import org.apache.log4j.Logger;
 
 import er.extensions.eof.*;
 import er.extensions.foundation.*;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
+/**
+ * <h3>Enterprise class - Event</h3>
+ * 
+ * <b>Attributes</b><pre>
+ * dateTime (NSTimestamp)
+ * eventName (String)
+ * </pre>
+ * 
+ * <b>To-one relationships</b><pre>
+ * location (your.app.model.Location)
+ * </pre>
+ * 
+ * <b>To-many relationships</b><pre>
+ * persons (NSArray<your.app.model.Person>)
+ * signUps (NSArray<your.app.model.SignUp>)
+ * </pre>
+ * @see your.app.model.Location
+ * @see your.app.model.Person
+ * @see your.app.model.SignUp
+ */
 @SuppressWarnings("all")
 public abstract class _Event extends  ERXGenericRecord {
-  public static final String ENTITY_NAME = "Event";
+	public static final String ENTITY_NAME = "Event";
 
-  // Attribute Keys
-  public static final ERXKey<NSTimestamp> DATE_TIME = new ERXKey<NSTimestamp>("dateTime");
-  public static final ERXKey<String> EVENT_NAME = new ERXKey<String>("eventName");
+	// Attributes
+  public static final String DATE_TIME_KEY = "dateTime";
+  public static final ERXKey<NSTimestamp> DATE_TIME = new ERXKey<NSTimestamp>(DATE_TIME_KEY);
+  public static final String EVENT_NAME_KEY = "eventName";
+  public static final ERXKey<String> EVENT_NAME = new ERXKey<String>(EVENT_NAME_KEY);
 
-  // Relationship Keys
-  public static final ERXKey<your.app.model.Location> LOCATION = new ERXKey<your.app.model.Location>("location");
-  public static final ERXKey<your.app.model.Person> PERSONS = new ERXKey<your.app.model.Person>("persons");
+	// Relationships
+  public static final String LOCATION_KEY = "location";
+  public static final ERXKey<your.app.model.Location> LOCATION = new ERXKey<your.app.model.Location>(LOCATION_KEY);
+  public static final String PERSONS_KEY = "persons";
+  public static final ERXKey<your.app.model.Person> PERSONS = new ERXKey<your.app.model.Person>(PERSONS_KEY);
+  public static final String SIGN_UPS_KEY = "signUps";
+  public static final ERXKey<your.app.model.SignUp> SIGN_UPS = new ERXKey<your.app.model.SignUp>(SIGN_UPS_KEY);
 
-  // Attributes
-  public static final String DATE_TIME_KEY = DATE_TIME.key();
-  public static final String EVENT_NAME_KEY = EVENT_NAME.key();
-
-  // Relationships
-  public static final String LOCATION_KEY = LOCATION.key();
-  public static final String PERSONS_KEY = PERSONS.key();
-
-  private static final Logger log = LoggerFactory.getLogger(_Event.class);
+  private static Logger LOG = Logger.getLogger(_Event.class);
 
   public Event localInstanceIn(EOEditingContext editingContext) {
     Event localInstance = (Event)EOUtilities.localInstanceOfObject(editingContext, this);
@@ -44,48 +60,56 @@ public abstract class _Event extends  ERXGenericRecord {
   }
 
   public NSTimestamp dateTime() {
-    return (NSTimestamp) storedValueForKey(_Event.DATE_TIME_KEY);
+    return (NSTimestamp) storedValueForKey("dateTime");
   }
-
   public void setDateTime(NSTimestamp value) {
-    log.debug( "updating dateTime from {} to {}", dateTime(), value);
-    takeStoredValueForKey(value, _Event.DATE_TIME_KEY);
+    if (_Event.LOG.isDebugEnabled()) {
+    	_Event.LOG.debug( "updating dateTime from " + dateTime() + " to " + value);
+    }
+    takeStoredValueForKey(value, "dateTime");
   }
 
   public String eventName() {
-    return (String) storedValueForKey(_Event.EVENT_NAME_KEY);
+    return (String) storedValueForKey("eventName");
   }
-
   public void setEventName(String value) {
-    log.debug( "updating eventName from {} to {}", eventName(), value);
-    takeStoredValueForKey(value, _Event.EVENT_NAME_KEY);
+    if (_Event.LOG.isDebugEnabled()) {
+    	_Event.LOG.debug( "updating eventName from " + eventName() + " to " + value);
+    }
+    takeStoredValueForKey(value, "eventName");
   }
 
   public your.app.model.Location location() {
-    return (your.app.model.Location)storedValueForKey(_Event.LOCATION_KEY);
+    return (your.app.model.Location)storedValueForKey("location");
+  }
+  
+  public your.app.model.Location locationRelationship() {
+    return (your.app.model.Location)storedValueForKey("location");
   }
 
   public void setLocation(your.app.model.Location value) {
-    takeStoredValueForKey(value, _Event.LOCATION_KEY);
+    takeStoredValueForKey(value, "location");
   }
 
   public void setLocationRelationship(your.app.model.Location value) {
-    log.debug("updating location from {} to {}", location(), value);
+    if (_Event.LOG.isDebugEnabled()) {
+      _Event.LOG.debug("updating location from " + location() + " to " + value);
+    }
     if (er.extensions.eof.ERXGenericRecord.InverseRelationshipUpdater.updateInverseRelationships()) {
-      setLocation(value);
+    	setLocation(value);
     }
     else if (value == null) {
-      your.app.model.Location oldValue = location();
-      if (oldValue != null) {
-        removeObjectFromBothSidesOfRelationshipWithKey(oldValue, _Event.LOCATION_KEY);
+    	your.app.model.Location oldValue = location();
+    	if (oldValue != null) {
+    		removeObjectFromBothSidesOfRelationshipWithKey(oldValue, "location");
       }
     } else {
-      addObjectToBothSidesOfRelationshipWithKey(value, _Event.LOCATION_KEY);
+    	addObjectToBothSidesOfRelationshipWithKey(value, "location");
     }
   }
-
+  
   public NSArray<your.app.model.Person> persons() {
-    return (NSArray<your.app.model.Person>)storedValueForKey(_Event.PERSONS_KEY);
+    return (NSArray<your.app.model.Person>)storedValueForKey("persons");
   }
 
   public NSArray<your.app.model.Person> persons(EOQualifier qualifier) {
@@ -100,13 +124,16 @@ public abstract class _Event extends  ERXGenericRecord {
     NSArray<your.app.model.Person> results;
     if (fetch) {
       EOQualifier fullQualifier;
-      EOQualifier inverseQualifier = ERXQ.equals(your.app.model.Person.EVENT_KEY, this);
-
+      EOQualifier inverseQualifier = new EOKeyValueQualifier(your.app.model.Person.EVENT_KEY, EOQualifier.QualifierOperatorEqual, this);
+    	
       if (qualifier == null) {
         fullQualifier = inverseQualifier;
       }
       else {
-        fullQualifier = ERXQ.and(qualifier, inverseQualifier);
+        NSMutableArray qualifiers = new NSMutableArray();
+        qualifiers.addObject(qualifier);
+        qualifiers.addObject(inverseQualifier);
+        fullQualifier = new EOAndQualifier(qualifiers);
       }
 
       results = your.app.model.Person.fetchPersons(editingContext(), fullQualifier, sortOrderings);
@@ -122,61 +149,157 @@ public abstract class _Event extends  ERXGenericRecord {
     }
     return results;
   }
-
+  
   public void addToPersons(your.app.model.Person object) {
-    includeObjectIntoPropertyWithKey(object, _Event.PERSONS_KEY);
+    includeObjectIntoPropertyWithKey(object, "persons");
   }
 
   public void removeFromPersons(your.app.model.Person object) {
-    excludeObjectFromPropertyWithKey(object, _Event.PERSONS_KEY);
+    excludeObjectFromPropertyWithKey(object, "persons");
   }
 
   public void addToPersonsRelationship(your.app.model.Person object) {
-    log.debug("adding {} to persons relationship", object);
+    if (_Event.LOG.isDebugEnabled()) {
+      _Event.LOG.debug("adding " + object + " to persons relationship");
+    }
     if (er.extensions.eof.ERXGenericRecord.InverseRelationshipUpdater.updateInverseRelationships()) {
-      addToPersons(object);
+    	addToPersons(object);
     }
     else {
-      addObjectToBothSidesOfRelationshipWithKey(object, _Event.PERSONS_KEY);
+    	addObjectToBothSidesOfRelationshipWithKey(object, "persons");
     }
   }
 
   public void removeFromPersonsRelationship(your.app.model.Person object) {
-    log.debug("removing {} from persons relationship", object);
+    if (_Event.LOG.isDebugEnabled()) {
+      _Event.LOG.debug("removing " + object + " from persons relationship");
+    }
     if (er.extensions.eof.ERXGenericRecord.InverseRelationshipUpdater.updateInverseRelationships()) {
-      removeFromPersons(object);
+    	removeFromPersons(object);
     }
     else {
-      removeObjectFromBothSidesOfRelationshipWithKey(object, _Event.PERSONS_KEY);
+    	removeObjectFromBothSidesOfRelationshipWithKey(object, "persons");
     }
   }
 
   public your.app.model.Person createPersonsRelationship() {
-    EOEnterpriseObject eo = EOUtilities.createAndInsertInstance(editingContext(),  your.app.model.Person.ENTITY_NAME );
-    addObjectToBothSidesOfRelationshipWithKey(eo, _Event.PERSONS_KEY);
+    EOClassDescription eoClassDesc = EOClassDescription.classDescriptionForEntityName("Person");
+    EOEnterpriseObject eo = eoClassDesc.createInstanceWithEditingContext(editingContext(), null);
+    editingContext().insertObject(eo);
+    addObjectToBothSidesOfRelationshipWithKey(eo, "persons");
     return (your.app.model.Person) eo;
   }
 
   public void deletePersonsRelationship(your.app.model.Person object) {
-    removeObjectFromBothSidesOfRelationshipWithKey(object, _Event.PERSONS_KEY);
+    removeObjectFromBothSidesOfRelationshipWithKey(object, "persons");
     editingContext().deleteObject(object);
   }
 
   public void deleteAllPersonsRelationships() {
-    Enumeration<your.app.model.Person> objects = persons().immutableClone().objectEnumerator();
+    Enumeration objects = persons().immutableClone().objectEnumerator();
     while (objects.hasMoreElements()) {
-      deletePersonsRelationship(objects.nextElement());
+      deletePersonsRelationship((your.app.model.Person)objects.nextElement());
+    }
+  }
+
+  public NSArray<your.app.model.SignUp> signUps() {
+    return (NSArray<your.app.model.SignUp>)storedValueForKey("signUps");
+  }
+
+  public NSArray<your.app.model.SignUp> signUps(EOQualifier qualifier) {
+    return signUps(qualifier, null, false);
+  }
+
+  public NSArray<your.app.model.SignUp> signUps(EOQualifier qualifier, boolean fetch) {
+    return signUps(qualifier, null, fetch);
+  }
+
+  public NSArray<your.app.model.SignUp> signUps(EOQualifier qualifier, NSArray<EOSortOrdering> sortOrderings, boolean fetch) {
+    NSArray<your.app.model.SignUp> results;
+    if (fetch) {
+      EOQualifier fullQualifier;
+      EOQualifier inverseQualifier = new EOKeyValueQualifier(your.app.model.SignUp.EVENT_KEY, EOQualifier.QualifierOperatorEqual, this);
+    	
+      if (qualifier == null) {
+        fullQualifier = inverseQualifier;
+      }
+      else {
+        NSMutableArray qualifiers = new NSMutableArray();
+        qualifiers.addObject(qualifier);
+        qualifiers.addObject(inverseQualifier);
+        fullQualifier = new EOAndQualifier(qualifiers);
+      }
+
+      results = your.app.model.SignUp.fetchSignUps(editingContext(), fullQualifier, sortOrderings);
+    }
+    else {
+      results = signUps();
+      if (qualifier != null) {
+        results = (NSArray<your.app.model.SignUp>)EOQualifier.filteredArrayWithQualifier(results, qualifier);
+      }
+      if (sortOrderings != null) {
+        results = (NSArray<your.app.model.SignUp>)EOSortOrdering.sortedArrayUsingKeyOrderArray(results, sortOrderings);
+      }
+    }
+    return results;
+  }
+  
+  public void addToSignUps(your.app.model.SignUp object) {
+    includeObjectIntoPropertyWithKey(object, "signUps");
+  }
+
+  public void removeFromSignUps(your.app.model.SignUp object) {
+    excludeObjectFromPropertyWithKey(object, "signUps");
+  }
+
+  public void addToSignUpsRelationship(your.app.model.SignUp object) {
+    if (_Event.LOG.isDebugEnabled()) {
+      _Event.LOG.debug("adding " + object + " to signUps relationship");
+    }
+    if (er.extensions.eof.ERXGenericRecord.InverseRelationshipUpdater.updateInverseRelationships()) {
+    	addToSignUps(object);
+    }
+    else {
+    	addObjectToBothSidesOfRelationshipWithKey(object, "signUps");
+    }
+  }
+
+  public void removeFromSignUpsRelationship(your.app.model.SignUp object) {
+    if (_Event.LOG.isDebugEnabled()) {
+      _Event.LOG.debug("removing " + object + " from signUps relationship");
+    }
+    if (er.extensions.eof.ERXGenericRecord.InverseRelationshipUpdater.updateInverseRelationships()) {
+    	removeFromSignUps(object);
+    }
+    else {
+    	removeObjectFromBothSidesOfRelationshipWithKey(object, "signUps");
+    }
+  }
+
+  public your.app.model.SignUp createSignUpsRelationship() {
+    EOClassDescription eoClassDesc = EOClassDescription.classDescriptionForEntityName("SignUp");
+    EOEnterpriseObject eo = eoClassDesc.createInstanceWithEditingContext(editingContext(), null);
+    editingContext().insertObject(eo);
+    addObjectToBothSidesOfRelationshipWithKey(eo, "signUps");
+    return (your.app.model.SignUp) eo;
+  }
+
+  public void deleteSignUpsRelationship(your.app.model.SignUp object) {
+    removeObjectFromBothSidesOfRelationshipWithKey(object, "signUps");
+    editingContext().deleteObject(object);
+  }
+
+  public void deleteAllSignUpsRelationships() {
+    Enumeration objects = signUps().immutableClone().objectEnumerator();
+    while (objects.hasMoreElements()) {
+      deleteSignUpsRelationship((your.app.model.SignUp)objects.nextElement());
     }
   }
 
 
   public static Event createEvent(EOEditingContext editingContext) {
-    Event eo = (Event) EOUtilities.createAndInsertInstance(editingContext, _Event.ENTITY_NAME);
+    Event eo = (Event) EOUtilities.createAndInsertInstance(editingContext, _Event.ENTITY_NAME);    
     return eo;
-  }
-
-  public static ERXFetchSpecification<Event> fetchSpec() {
-    return new ERXFetchSpecification<Event>(_Event.ENTITY_NAME, null, null, false, true, null);
   }
 
   public static NSArray<Event> fetchAllEvents(EOEditingContext editingContext) {
@@ -188,13 +311,14 @@ public abstract class _Event extends  ERXGenericRecord {
   }
 
   public static NSArray<Event> fetchEvents(EOEditingContext editingContext, EOQualifier qualifier, NSArray<EOSortOrdering> sortOrderings) {
-    ERXFetchSpecification<Event> fetchSpec = new ERXFetchSpecification<Event>(_Event.ENTITY_NAME, qualifier, sortOrderings);
-    NSArray<Event> eoObjects = fetchSpec.fetchObjects(editingContext);
+    EOFetchSpecification fetchSpec = new EOFetchSpecification(_Event.ENTITY_NAME, qualifier, sortOrderings);
+    fetchSpec.setIsDeep(true);
+    NSArray<Event> eoObjects = (NSArray<Event>)editingContext.objectsWithFetchSpecification(fetchSpec);
     return eoObjects;
   }
 
   public static Event fetchEvent(EOEditingContext editingContext, String keyName, Object value) {
-    return _Event.fetchEvent(editingContext, ERXQ.equals(keyName, value));
+    return _Event.fetchEvent(editingContext, new EOKeyValueQualifier(keyName, EOQualifier.QualifierOperatorEqual, value));
   }
 
   public static Event fetchEvent(EOEditingContext editingContext, EOQualifier qualifier) {
@@ -205,7 +329,7 @@ public abstract class _Event extends  ERXGenericRecord {
       eoObject = null;
     }
     else if (count == 1) {
-      eoObject = eoObjects.objectAtIndex(0);
+      eoObject = (Event)eoObjects.objectAtIndex(0);
     }
     else {
       throw new IllegalStateException("There was more than one Event that matched the qualifier '" + qualifier + "'.");
@@ -214,7 +338,7 @@ public abstract class _Event extends  ERXGenericRecord {
   }
 
   public static Event fetchRequiredEvent(EOEditingContext editingContext, String keyName, Object value) {
-    return _Event.fetchRequiredEvent(editingContext, ERXQ.equals(keyName, value));
+    return _Event.fetchRequiredEvent(editingContext, new EOKeyValueQualifier(keyName, EOQualifier.QualifierOperatorEqual, value));
   }
 
   public static Event fetchRequiredEvent(EOEditingContext editingContext, EOQualifier qualifier) {
@@ -226,7 +350,7 @@ public abstract class _Event extends  ERXGenericRecord {
   }
 
   public static Event localInstanceIn(EOEditingContext editingContext, Event eo) {
-    Event localInstance = (eo == null) ? null : ERXEOControlUtilities.localInstanceOfObject(editingContext, eo);
+    Event localInstance = (eo == null) ? null : (Event)EOUtilities.localInstanceOfObject(editingContext, eo);
     if (localInstance == null && eo != null) {
       throw new IllegalStateException("You attempted to localInstance " + eo + ", which has not yet committed.");
     }

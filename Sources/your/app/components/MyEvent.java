@@ -19,7 +19,7 @@ public class MyEvent extends BaseComponent {
     }
     
     //public EOEditingContext ec = ERXEC.newEditingContext();
-    public NSTimestampFormatter nsdf = new NSTimestampFormatter("yyMMdd HH:MM");
+    public NSTimestampFormatter nsdf = new NSTimestampFormatter("yyyy/MM/dd HH:MM");
 	public your.app.model.Event event;
 	public your.app.model.Event selectedEvent;
 	private NSMutableArray<your.app.model.Event> events;

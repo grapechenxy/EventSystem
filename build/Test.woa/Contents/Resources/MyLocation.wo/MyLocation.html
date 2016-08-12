@@ -15,14 +15,14 @@
 <wo:string value = "$location.address" />; Telephone:  
 <wo:string value = "$location.contactPhoneNo"/> 
 <wo:link action = "$editLocation">edit</wo:link> <wo:link action = "$deleteLocation">delete</wo:link><br/>
-<div class = "big1"> events: <br/></div>
+<div class = "big1"> events <br/></div>
 <wo:loop list = "$location.events" item = "$event">
 
 <wo:string value = "$event.eventName" />: 
 
 <wo:loop list = "$event.persons" item = "$person">
 
-<wo:string value = "$person.fullName" />; 
+<ul style="list-style-type:circle"><li><wo:string value = "$person.fullName" /></li></ul>
 </wo:loop> 
 
 <br/></wo:loop>

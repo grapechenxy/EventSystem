@@ -1,6 +1,12 @@
 {
     attributes = (
         {allowsNull = Y; columnName = age; name = age; prototypeName = intNumber; }, 
+        {
+            allowsNull = Y; 
+            columnName = email; 
+            name = email; 
+            prototypeName = varchar255; 
+        }, 
         {allowsNull = Y; columnName = eventID; name = eventID; prototypeName = id; }, 
         {
             allowsNull = Y; 
@@ -14,11 +20,24 @@
             columnName = lastName; 
             name = lastName; 
             prototypeName = varchar255; 
+        }, 
+        {
+            allowsNull = Y; 
+            columnName = loginLevel; 
+            name = loginLevel; 
+            prototypeName = javaEnum; 
+            valueClassName = "your.app.model.Person$LoginLevelEnum"; 
+        }, 
+        {
+            allowsNull = Y; 
+            columnName = password; 
+            name = password; 
+            prototypeName = varchar255; 
         }
     ); 
-    attributesUsedForLocking = (age, eventID, firstName, id, lastName); 
+    attributesUsedForLocking = (age, email, eventID, firstName, id, lastName, loginLevel, password); 
     className = "your.app.model.Person"; 
-    classProperties = (age, event, firstName, lastName); 
+    classProperties = (age, email, event, firstName, lastName, loginLevel, password, signUps); 
     externalName = Person; 
     fetchSpecificationDictionary = {}; 
     internalInfo = {"_javaClientClassName" = Person; }; 
@@ -31,6 +50,13 @@
             joinSemantic = EOInnerJoin; 
             joins = ({destinationAttribute = id; sourceAttribute = eventID; }); 
             name = event; 
+        }, 
+        {
+            destination = SignUp; 
+            isToMany = Y; 
+            joinSemantic = EOInnerJoin; 
+            joins = ({destinationAttribute = personID; sourceAttribute = id; }); 
+            name = signUps; 
         }
     ); 
 }

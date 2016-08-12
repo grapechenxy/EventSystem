@@ -1,36 +1,54 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
 <html>
-	<head>
-		<title>Person & Event</title>
-		<style>
-		
-		body {
-			background-color: lightblue;
-		}
-		.edit { display: inline-block; border:1px solid lightgray; background-color:green; }
-		.active { background-color: yellow; }
-		.big {font-size: 150%; font-weight: bold;}
-		.big1 {font-size: 120%; color: #1E90FF;}
-		.big2 {font-weight: bold;}
-		</style>
-	</head>
-	<body>
-
-<wo:link action = "$showPerson" class = "$personCSSClass">Person Form</wo:link>  
-<wo:link action = "$showEvent" class = "$eventCSSClass">Event Form</wo:link>
-<wo:link action = "$showLocation" class = "$locationCSSClass">Location Form</wo:link>
- <br />
- <br />
-<wo:if condition = "$isPerson" ><wo:MyPerson /></wo:if>
- <br />
- <br />
-<wo:if condition = "$isEvent" ><wo:MyEvent /></wo:if>
- <br />
- <br />
-<wo:if condition = "$isLocation" ><wo:MyLocation /></wo:if>
-
-  
-
-
-	</body>
+  <head>
+    <title>Person &amp; Event</title>
+    <style>
+      		ul {
+          
+          padding: 20px;
+      }
+      ul li {
+         
+          margin: 5px;
+      }
+      		body {
+      			background-color: lightblue;
+      		}
+      		.edit { display: inline-block; border:1px solid lightgray; background-color:green; }
+      		.active { background-color: yellow; }
+      		.big {font-size: 150%; font-weight: bold;}
+      		.big1 {font-size: 120%; color: #1E90FF;}
+      		.big2 {font-weight: bold;}
+    </style>
+  </head>
+  <body>
+    <wo:if condition = "$session.person">
+      <wo:string value = "$session.person.loginLevel" />
+      <br />
+      <wo:link action = "$showPerson" class = "$personCSSClass">Person Form</wo:link>
+      <wo:link action = "$showEvent" class = "$eventCSSClass">Event Form</wo:link>
+      <wo:link action = "$showLocation" class = "$locationCSSClass">Location Form</wo:link>
+      <br />
+      <br />
+      <wo:if condition = "$isPerson"><wo:MyPerson /></wo:if>
+      <br />
+      <br />
+      <wo:if condition = "$isEvent"><wo:MyEvent /></wo:if>
+      <br />
+      <br />
+      <wo:if condition = "$isLocation"><wo:MyLocation /></wo:if>
+    </wo:if>
+    <wo:else>
+      <div class = "big"> Login: </div>
+      <br />
+      <wo:form>
+        email: 
+        <wo:textField value = "$email" />
+        password: 
+        <wo:passwordField value = "$password" />
+        <br />
+        <wo:submit action = "$loginPerson" value = "login" />
+      </wo:form>
+    </wo:else>
+  </body>
 </html>

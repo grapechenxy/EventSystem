@@ -1,0 +1,36 @@
+{
+    attributes = (
+        {allowsNull = Y; columnName = eventID; name = eventID; prototypeName = id; }, 
+        {allowsNull = N; name = id; prototypeName = id; }, 
+        {allowsNull = Y; columnName = personID; name = personID; prototypeName = id; }, 
+        {
+            allowsNull = Y; 
+            columnName = signUpDateTime; 
+            name = signUpDateTime; 
+            prototypeName = dateTime; 
+        }
+    ); 
+    attributesUsedForLocking = (eventID, id, personID, signUpDateTime); 
+    className = "your.app.model.SignUp"; 
+    classProperties = (event, person, signUpDateTime); 
+    externalName = SignUp; 
+    fetchSpecificationDictionary = {}; 
+    name = SignUp; 
+    primaryKeyAttributes = (id); 
+    relationships = (
+        {
+            destination = Event; 
+            isToMany = N; 
+            joinSemantic = EOInnerJoin; 
+            joins = ({destinationAttribute = id; sourceAttribute = eventID; }); 
+            name = event; 
+        }, 
+        {
+            destination = Person; 
+            isToMany = N; 
+            joinSemantic = EOInnerJoin; 
+            joins = ({destinationAttribute = id; sourceAttribute = personID; }); 
+            name = person; 
+        }
+    ); 
+}

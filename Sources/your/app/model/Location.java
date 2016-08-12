@@ -7,4 +7,8 @@ public class Location extends _Location {
 	@SuppressWarnings("unused")
 	private static final Logger log = LoggerFactory.getLogger(Location.class);
 	
+	public String locationInfo(){
+		return name() + " " + address();
+	}
+	
 }

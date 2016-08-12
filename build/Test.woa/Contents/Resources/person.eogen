@@ -6,5 +6,6 @@
  -packagedirs \
  -subclassDestination Sources \
  -subclassJavaTemplate WonderEntity.java \
+ -templatedir /Library/Developer/Template \
  -verbose \
  -loadModelGroup

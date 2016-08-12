@@ -9,7 +9,8 @@
     entities = (
         {className = "your.app.model.Event"; name = Event; }, 
         {className = "your.app.model.Location"; name = Location; }, 
-        {className = "your.app.model.Person"; name = Person; }
+        {className = "your.app.model.Person"; name = Person; }, 
+        {className = "your.app.model.SignUp"; name = SignUp; }
     ); 
     userInfo = {
         "_EntityModeler" = {

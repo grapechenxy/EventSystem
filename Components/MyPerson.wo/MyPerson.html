@@ -1,24 +1,33 @@
-
-
 <wo:form multipleSubmit = "true">
-
-<div class="person"><wo:PersonEdit person = "$selectedPerson"/></div>
-<br/>
-
-<wo:submit action = "$create" value = "create"></wo:submit><br/>
-<wo:submit action = "$save" value = "save"></wo:submit><br/>
-
+<wo:if condition = "$selectedPerson.isNewObject">
+  <ul>
+    <div class = "person"><wo:PersonEdit person = "$selectedPerson" /></div>
+    <wo:if condition = "$session.person.isSuperAdmin">
+      <li>login level: <wo:select list = "$loginLevels" item = "$loginLevel" selection = "$selectedPerson.loginLevel" noSelectionString = "$selectedPerson.loginLevel" /></li>
+      <br />
+    </wo:if>
+  </ul>
+  </wo:if>
+  <wo:submit action = "$create" value = "create" />
+  <wo:submit action = "$save" value = "save" />
+  <br />
 </wo:form>
 
-<wo:loop list = "$persons" item = "$person"> 
-<wo:string value = "$person.fullName" /> <wo:string value = "$person.age" /> <wo:string value = "$person.event.eventName" />
-<wo:link action = "$edit">edit</wo:link>  <wo:link action = "$delete">delete</wo:link>  
+<wo:if condition = "$showWarning">
+<wo:string value = "Please enter a valid email address:)" />
+</wo:if>
+
+<wo:if condition = "$session.person.isSuperAdmin">
+  <wo:loop list = "$persons" item = "$person">
+    <wo:string value = "$person.fullName" />
+    <wo:string value = "$person.age" />
+    <wo:string value = "$person.event.eventName" />
+    <wo:string value = "$person.loginLevel" />
+    <wo:link action = "$edit">edit</wo:link>
+    <wo:link action = "$delete">delete</wo:link>
+    <br />
+  </wo:loop>
+</wo:if>
 <br />
-
-<br/>
-<br/>
-
-</wo:loop>
-
-
-
+<br />
+<br />

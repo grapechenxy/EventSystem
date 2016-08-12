@@ -1,5 +1,10 @@
-first name: <wo:textField value = "$person.firstName" /><br/>
-last name: <wo:textField value = "$person.lastName" /><br/>
-age: <wo:textField value = "$person.age" formatter = "$integerFormatter"/><br/>
-choose event:<wo:select list = "$events" item = "$event" selection = "$person.event" displayString = "$event.eventInfo" noSelectionString = "none"><br/>
-</wo:select>
+<li>first name: <wo:textField value = "$person.firstName" /></li>
+<br />
+<li>last name: <wo:textField value = "$person.lastName" /></li>
+<br />
+<li>age: <wo:textField value = "$person.age" formatter = "$integerFormatter" /></li>
+<br />
+<li>Email: <wo:textField value = "$person.email" /></li>
+<br />
+<li>password: <wo:passwordField value = "$person.password" /></li>
+<br />

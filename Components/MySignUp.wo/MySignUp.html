@@ -1,0 +1,68 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<html>
+  <head>
+    <title>SignUp Event</title>
+    <style>
+
+      body {
+      	background-color: lightblue;
+      }
+      .edit { display: inline-block; border:1px solid lightgray; background-color:green; }
+      .active { background-color: yellow; }
+      .big {font-size: 150%; font-weight: bold;}
+      .big1 {font-size: 120%; color: #1E90FF;}
+      .big2 {font-weight: bold;}
+    </style>
+  </head>
+  <body>
+  <wo:hyperlink action = "$redirect">Create New Account</wo:hyperlink><br/><br/>
+    <wo:form multipleSubmit = "true">
+      Choose an event: 
+      <wo:select list = "$events" item = "$event" selection = "$signUp.event" displayString = "$event.eventName" noSelectionString = "none" onchange = "javascript:this.form.submit">
+        <br />
+        <br />
+      </wo:select>
+      <wo:AjaxSubmitButton action = "$update" updateContainerID = "detail" value = "choose event" />
+      <br />
+      <br />
+      <wo:AjaxUpdateContainer id = "detail">
+        <wo:if condition = "$signUp.event">
+          <wo:string value = "$signUp.event.eventName" />
+          <br />
+          <wo:string value = "$signUp.event.dateTime" formatter = "$nsdf" />
+          <wo:string value = "$signUp.event.location.locationInfo" />
+          <br />
+          <br />
+          first name: 
+          <wo:textField value = "$signUp.person.firstName" />
+          <br />
+          last name: 
+          <wo:textField value = "$signUp.person.lastName" />
+          <br />
+          email: 
+          <wo:textField value = "$signUp.person.email" />
+          <br />
+          <wo:submit action = "$saveSignUp" />
+          <br />
+          <br />
+          <br />
+          <wo:not condition = "$session.person">
+            <div class = "big"> SIGN IN: </div>
+            <br />
+            email: 
+            <wo:textField value = "$email" />
+            <br />
+            password: 
+            <wo:passwordField value = "$password" />
+            <wo:submit action = "$login" value = "login" />
+          </wo:not>
+          <wo:else> <wo:submit action = "$logout" value = "logout" /> </wo:else>
+          <br />
+          <br />
+          
+        </wo:if>
+        <wo:str value = "$session.ec.insertedObjects" />
+      </wo:AjaxUpdateContainer>
+    </wo:form>
+  </body>
+</html>

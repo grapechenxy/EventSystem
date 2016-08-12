@@ -29,12 +29,13 @@ er.migration.createTablesIfNecessary=true
 
 # ERJavaMail
 er.javamail.centralize=true
-er.javamail.adminEmail=admin@yourhost.com
+er.javamail.adminEmail=grape8441@hotmail.com
 er.javamail.debugEnabled=false
-er.javamail.smtpHost=your.smtpserver.com
-er.javamail.smtpAuth=false
-er.javamail.smtpUser=
-er.javamail.smtpPassword=
+er.javamail.smtpHost=mail.nklt.se
+er.javamail.smtpPort=2525
+er.javamail.smtpAuth=true
+er.javamail.smtpUser=uapark
+er.javamail.smtpPassword=gluten
 
 # Log4j Configuration
 log4j.loggerFactory=er.extensions.logging.ERXLogger$Factory
@@ -54,7 +55,7 @@ log4j.logger.er=INFO
 
 # ERExtensions
 # Transaction - Switching this to debug will start the sql ouputting.
-log4j.logger.er.transaction.adaptor.EOAdaptorDebugEnabled=DEBUG
+#log4j.logger.er.transaction.adaptor.EOAdaptorDebugEnabled=DEBUG
 
 # Fixes - Turning this on will show all the models that are loaded
 log4j.logger.er.extensions.fixes.ERSharedEOLoader=INFO

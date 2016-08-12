@@ -1,0 +1,42 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns = "http://www.w3.org/1999/xhtml" xml:lang = "en" lang = "en">
+  <head>
+    <meta http-equiv = "Content-Type" content = "text/html; charset=utf-8" />
+    <title>create person</title>
+  </head>
+  <style>
+
+    body {
+    	background-color: lightblue;
+    }
+    .edit { display: inline-block; border:1px solid lightgray; background-color:green; }
+    .active { background-color: yellow; }
+    .big {font-size: 150%; font-weight: bold;}
+    .big1 {font-size: 120%; color: #1E90FF;}
+    .big2 {font-weight: bold;}
+  </style>
+  <body>
+    <wo:form multipleSubmit = "true">
+    <wo:if condition = "$person.isNewObject">
+      <div class = "big">
+        SIGN UP: 
+        <ul> <wo:PersonEdit person = "$person" /> </ul>
+      </div>
+      <br />
+      <wo:submit action = "$save" value = "save" />
+      <br />
+      <br />
+      <br />
+      </wo:if>
+      
+      <wo:else>
+      <wo:string value = "$person.fullName" /><br/> 
+      Thank you for your registration!
+      
+      </wo:else>
+
+     
+    </wo:form>
+    <wo:hyperlink action = "$redirectToMySignUp">Go to SignUp Page</wo:hyperlink>
+  </body>
+</html>

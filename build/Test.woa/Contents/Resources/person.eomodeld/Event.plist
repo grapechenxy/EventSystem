@@ -22,7 +22,7 @@
     ); 
     attributesUsedForLocking = (dateTime, eventName, id, locationID); 
     className = "your.app.model.Event"; 
-    classProperties = (dateTime, eventName, location, persons); 
+    classProperties = (dateTime, eventName, location, persons, signUps); 
     externalName = Event; 
     fetchSpecificationDictionary = {}; 
     name = Event; 
@@ -41,6 +41,13 @@
             joinSemantic = EOInnerJoin; 
             joins = ({destinationAttribute = eventID; sourceAttribute = id; }); 
             name = persons; 
+        }, 
+        {
+            destination = SignUp; 
+            isToMany = Y; 
+            joinSemantic = EOInnerJoin; 
+            joins = ({destinationAttribute = eventID; sourceAttribute = id; }); 
+            name = signUps; 
         }
     ); 
 }
